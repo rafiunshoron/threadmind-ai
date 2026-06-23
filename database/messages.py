@@ -33,3 +33,14 @@ def get_messages_by_conversation(conversation_id: str):
     )
 
     return result.data
+
+
+def format_messages_for_gradio(messages):
+    """Convert Supabase message rows into Gradio messages format."""
+    return [
+        {
+            "role": message["role"],
+            "content": message["content"]
+        }
+        for message in messages
+    ]
