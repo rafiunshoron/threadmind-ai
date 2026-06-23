@@ -59,3 +59,16 @@ def get_conversation_by_id(conversation_id: str):
     )
 
     return result.data
+
+
+def update_conversation_title(conversation_id: str, title: str):
+    """Update the title of a conversation."""
+    result = (
+        supabase
+        .table("conversations")
+        .update({"title": title})
+        .eq("conversation_id", conversation_id)
+        .execute()
+    )
+
+    return result.data[0]
