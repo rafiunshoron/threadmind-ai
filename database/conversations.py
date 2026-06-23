@@ -31,3 +31,31 @@ def get_conversations_by_user(user_id: str):
     )
 
     return result.data
+
+
+def get_conversation_by_id(conversation_id: str):
+    """Return one conversation by conversation_id."""
+    result = (
+        supabase
+        .table("conversations")
+        .select("*")
+        .eq("conversation_id", conversation_id)
+        .single()
+        .execute()
+    )
+
+    return result.data
+
+
+def get_conversation_by_id(conversation_id: str):
+    """Return one conversation by conversation_id."""
+    result = (
+        supabase
+        .table("conversations")
+        .select("*")
+        .eq("conversation_id", conversation_id)
+        .single()
+        .execute()
+    )
+
+    return result.data
