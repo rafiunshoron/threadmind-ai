@@ -27,3 +27,29 @@ def get_all_users():
     )
 
     return result.data
+
+
+def get_user_by_display_name(display_name: str):
+    """Return a user by display name if it exists."""
+    result = (
+        supabase
+        .table("users")
+        .select("*")
+        .eq("display_name", display_name)
+        .execute()
+    )
+
+    if result.data:
+        return result.data[0]
+
+    return None
+
+
+def get_or_create_user(display_name: str):
+    """Get an existing user by name or create a new one."""
+    existing_user = get_user_by_display_name(display_name)
+
+    if existing_user:
+        return existing_user
+
+    return create_user(display_name)
